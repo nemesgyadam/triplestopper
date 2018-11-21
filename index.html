@@ -1,15 +1,14 @@
 <html>
 <head>
-	<title>javascript-mobile-desktop-geolocation With No Simulation with Google Maps</title>
-	<meta name = "viewport" content = "width = device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;">		
-
+	<title>Road Type Log</title>
+	
 	<style>
 		body {font-family: Helvetica;font-size:11pt;padding:0px;margin:0px}
 		#title {background-color:#e22640;padding:5px;}
 		#current {font-size:10pt;padding:5px;}	
 	</style>
 	</head>
-	<body onload="initialise()">
+	<body >
 	<section id="stopWatch">
 	<table>
 		<tr>
@@ -40,13 +39,6 @@
 		
 		
 		
-		<div id="current">Initializing...</div>
-		<div id="map_canvas" style="width:320px; height:350px"></div>
-
-		<script src="js/geoPosition.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/geoPositionSimulator.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="guglimap.js"></script>
-
 		<script>
 		//stopper
 		var time = document.getElementById('time'),
@@ -139,7 +131,7 @@
 	function timer() {
 		t = setTimeout(add, 100);
 	}
-	//timer();
+	
 
 
 /* Start button */
@@ -158,9 +150,7 @@ next.onclick = function(){
 		else
 	if(active==="c")
 		active="a";}
-		geoPosition.getCurrentPosition(showPosition,function(){document.getElementById('current').innerHTML="Couldn't get location"},{enableHighAccuracy:true});
-			
-	console.log(active);
+		
 }
 /* Clear button */
 clear.onclick = function() {
@@ -175,37 +165,7 @@ clear.onclick = function() {
 	c_seconds = 0; c_minutes = 0; c_hours = 0; c_ms=0;
 	active="a";
 }
-		
-		
-		
-		
-		//gps
-		function initialise()
-		{
-			var locations=new Array({ coords: {
-										latitude: 	0,
-										longitude: 0
-									} 
-								});
-			
-			if(geoPosition.init())
-			{
-				
-				geoPosition.getCurrentPosition(showPosition,function(){document.getElementById('current').innerHTML="Couldn't get location"},{enableHighAccuracy:true});
-			}
-			else
-			{
-				document.getElementById('current').innerHTML="Functionality not available";
-			}
-		}
 
-		function showPosition(p)
-		{
-			var latitude = parseFloat( p.coords.latitude );
-			var longitude = parseFloat( p.coords.longitude );
-			document.getElementById('current').innerHTML+="latitude=" + latitude + " longitude=" + longitude+"<br>";
-			
-		}
 		</script>
 	</body>
 </html>
