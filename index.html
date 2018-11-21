@@ -9,8 +9,37 @@
 		#current {font-size:10pt;padding:5px;}	
 	</style>
 	</head>
-	<body onload="initialiseMap();initialise()">
-		<h1>javascript-mobile-desktop-geolocation With No Simulation with Google Maps</h1>
+	<body onload="initialise()">
+	<section id="stopWatch">
+	<table>
+		<tr>
+			<th><h1>A</h1></th>
+			<th><h1>B</h1></th> 
+			<th><h1>C</h1></th> 
+
+		</tr>
+		<tr>
+			<th><h1 id=timea>00:00:00 0</h1></th>
+			<th><h1 id=timeb>00:00:00 0</h1></th> 
+			<th><h1 id=timec>00:00:00 0</h1></th> 
+
+		</tr>
+	<tr>
+		<th>
+		<h1 id=time>00:00:00 0</h1>
+		<button id="next">next</button>
+		<button id="start">start</button>
+		<button id="stop">stop</button>
+		<button id="clear">clear</button>
+		</th>
+	</tr>
+	</table>
+		
+		
+		</section> 
+		
+		
+		
 		<div id="current">Initializing...</div>
 		<div id="map_canvas" style="width:320px; height:350px"></div>
 
@@ -19,29 +48,149 @@
 		<script type="text/javascript" src="guglimap.js"></script>
 
 		<script>
-		function initialiseMap()
-		{
-		    var myOptions = {
-			      zoom: 4,
-			      mapTypeControl: true,
-			      mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-			      navigationControl: true,
-			      navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-			      mapTypeId: google.maps.MapTypeId.ROADMAP      
-			    }	
-			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		//stopper
+		var time = document.getElementById('time'),
+		start = document.getElementById('start'),
+		stop = document.getElementById('stop'),
+		clear = document.getElementById('clear'),
+		next = document.getElementById('next'),
+		seconds = 0, minutes = 0, hours = 0, ms=0,
+		a_seconds = 0, a_minutes = 0, a_hours = 0, a_ms=0,
+		b_seconds = 0, b_minutes = 0, b_hours = 0, b_ms=0,
+		c_seconds = 0, c_minutes = 0, c_hours = 0, c_ms=0,
+		t;
+		var active="a";
+
+	function add() {
+    ms++;
+	if(ms>=10){
+		seconds++;
+		ms=0;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
 		}
+    }
+		if(active==="a")
+			add_a();
+		if(active==="b")
+			add_b();
+		if(active==="c")
+			add_c();
+		time.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds)+" "+ms;
+		timea.textContent = (a_hours ? (a_hours > 9 ? a_hours : "0" + a_hours) : "00") + ":" + (a_minutes ? (a_minutes > 9 ? a_minutes : "0" + a_minutes) : "00") + ":" + (a_seconds > 9 ? a_seconds : "0" + a_seconds)+" "+a_ms;
+		timeb.textContent = (b_hours ? (b_hours > 9 ? b_hours : "0" + b_hours) : "00") + ":" + (b_minutes ? (b_minutes > 9 ? b_minutes : "0" + b_minutes) : "00") + ":" + (b_seconds > 9 ? b_seconds : "0" + b_seconds)+" "+b_ms;
+		timec.textContent = (c_hours ? (c_hours > 9 ? c_hours : "0" + c_hours) : "00") + ":" + (c_minutes ? (c_minutes > 9 ? c_minutes : "0" + c_minutes) : "00") + ":" + (c_seconds > 9 ? c_seconds : "0" + c_seconds)+" "+c_ms;
+
+		timer();
+	
+	}
+	
+	function add_a() {
+    a_ms++;
+	if(a_ms>=10){
+		a_seconds++;
+		a_ms=0;
+    if (a_seconds >= 60) {
+        a_seconds = 0;
+        a_minutes++;
+        if (a_minutes >= 60) {
+            a_minutes = 0;
+            a_hours++;
+        }
+		}
+    }
+	}
+	function add_b() {
+    b_ms++;
+	if(b_ms>=10){
+		b_seconds++;
+		b_ms=0;
+    if (b_seconds >= 60) {
+        b_seconds = 0;
+        b_minutes++;
+        if (b_minutes >= 60) {
+            b_minutes = 0;
+            b_hours++;
+        }
+		}
+    }
+	}
+	function add_c() {
+    c_ms++;
+	if(c_ms>=10){
+		c_seconds++;
+		c_ms=0;
+    if (c_seconds >= 60) {
+        c_seconds = 0;
+        c_minutes++;
+        if (c_minutes >= 60) {
+            c_minutes = 0;
+            c_hours++;
+        }
+		}
+    }
+	}
+   
+	function timer() {
+		t = setTimeout(add, 100);
+	}
+	//timer();
+
+
+/* Start button */
+start.onclick = timer;
+
+/* Stop button */
+stop.onclick = function() {
+    clearTimeout(t);
+}
+next.onclick = function(){
+	if(active==="a")
+		{active="b";}
+		else{
+	if(active==="b")
+		active="c";
+		else
+	if(active==="c")
+		active="a";}
+		geoPosition.getCurrentPosition(showPosition,function(){document.getElementById('current').innerHTML="Couldn't get location"},{enableHighAccuracy:true});
+			
+	console.log(active);
+}
+/* Clear button */
+clear.onclick = function() {
+    time.textContent = "00:00:00 0";
+	timea.textContent = "00:00:00 0";
+	timeb.textContent = "00:00:00 0";
+	timec.textContent = "00:00:00 0";
+    seconds = 0; minutes = 0; hours = 0; ms=0;
+	
+	a_seconds = 0; a_minutes = 0; a_hours = 0; a_ms=0;
+	b_seconds = 0; b_minutes = 0; b_hours = 0; b_ms=0;
+	c_seconds = 0; c_minutes = 0; c_hours = 0; c_ms=0;
+	active="a";
+}
+		
+		
+		
+		
+		//gps
 		function initialise()
 		{
 			var locations=new Array({ coords: {
-										latitude: 	30.2847664,
-										longitude: -97.7264275
+										latitude: 	0,
+										longitude: 0
 									} 
 								});
-			geoPositionSimulator.init(locations);
+			
 			if(geoPosition.init())
 			{
-				document.getElementById('current').innerHTML="Receiving...";
+				
 				geoPosition.getCurrentPosition(showPosition,function(){document.getElementById('current').innerHTML="Couldn't get location"},{enableHighAccuracy:true});
 			}
 			else
@@ -54,24 +203,7 @@
 		{
 			var latitude = parseFloat( p.coords.latitude );
 			var longitude = parseFloat( p.coords.longitude );
-			document.getElementById('current').innerHTML="latitude=" + latitude + " longitude=" + longitude;
-			var pos=new google.maps.LatLng( latitude , longitude);
-			map.setCenter(pos);
-			map.setZoom(14);
-
-			var infowindow = new google.maps.InfoWindow({
-			    content: "<strong>yes</strong>"
-			});
-
-			var marker = new google.maps.Marker({
-			    position: pos,
-			    map: map,
-			    title:"You are here"
-			});
-
-			google.maps.event.addListener(marker, 'click', function() {
-			  infowindow.open(map,marker);
-			});
+			document.getElementById('current').innerHTML+="latitude=" + latitude + " longitude=" + longitude+"<br>";
 			
 		}
 		</script>
