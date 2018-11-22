@@ -218,7 +218,6 @@
 		<script>
 		
 	
-	
 		var time = document.getElementById('time'),
 		start = document.getElementById('start'),
 		stop = document.getElementById('stop'),
@@ -245,7 +244,8 @@
 		var totalC=0;
 		
 	function add() {
-	var currentdate = new Date(); 
+	var currentdate = Date.now(); 
+	
 		
 	if(!paused)
 	{	time.textContent =	toHHMMSS(currentdate-last);
