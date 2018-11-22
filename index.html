@@ -5,167 +5,380 @@
 	<style>
 		body {font-family: Helvetica;font-size:11pt;padding:0px;margin:0px}
 		#title {background-color:#e22640;padding:5px;}
-		#current {font-size:10pt;padding:5px;}	
+			
+		.center {
+		margin-left: 50pt;
+		 
+		 
+		}
+		.time {
+		border: 2px solid #000000;
+		border-radius: 10px 10px 10px 10px;
+		text-align: center; 
+		vertical-align: middle;
+		padding:5pt;
+		margin:10pt;
+		}
+		.lborder {
+		border: 2px solid #000000;
+		border-radius: 10px 0px 0px 10px;
+		text-align: center; 
+		vertical-align: middle;
+		}
+		.rborder {
+		border: 2px solid #000000;
+		border-radius: 0px 10px 10px 0px;
+		text-align: center; 
+		vertical-align: middle;}
+		.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0));
+	background:-moz-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+	background:-webkit-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+	background:-o-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+	background:-ms-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0',GradientType=0);
+	background-color:#ffffff;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:10px;
+	border:1px solid #337fed;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+	width:120px
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6));
+	background:-moz-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+	background:-webkit-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+	background:-o-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+	background:-ms-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+	background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6',GradientType=0);
+	background-color:#1e62d0;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.selected {
+	-moz-box-shadow:inset 0px 1px 0px 0px #3dc21b;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #3dc21b;
+	box-shadow:inset 0px 1px 0px 0px #3dc21b;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #44c767), color-stop(1, #5cbf2a));
+	background:-moz-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+	background:-webkit-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+	background:-o-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+	background:-ms-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#44c767', endColorstr='#5cbf2a',GradientType=0);
+	background-color:#44c767;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:10px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	width:120px
+}
+.selected:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5cbf2a), color-stop(1, #44c767));
+	background:-moz-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
+	background:-webkit-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
+	background:-o-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
+	background:-ms-linear-gradient(top, #5cbf2a 5%, #44c767 100%);
+	background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cbf2a', endColorstr='#44c767',GradientType=0);
+	background-color:#5cbf2a;
+}
+.selected:active {
+	position:relative;
+	top:1px;
+}
+.disabled {
+	-moz-box-shadow:inset 0px 1px 0px 0px #3dc21b;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #3dc21b;
+	box-shadow:inset 0px 1px 0px 0px #3dc21b;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d7d7d), color-stop(1, #aab3a5));
+	background:-moz-linear-gradient(top, #7d7d7d 5%, #aab3a5 100%);
+	background:-webkit-linear-gradient(top, #7d7d7d 5%, #aab3a5 100%);
+	background:-o-linear-gradient(top, #7d7d7d 5%, #aab3a5 100%);
+	background:-ms-linear-gradient(top, #7d7d7d 5%, #aab3a5 100%);
+	background:linear-gradient(to bottom, #7d7d7d 5%, #aab3a5 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d7d7d', endColorstr='#aab3a5',GradientType=0);
+	background-color:#7d7d7d;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:10px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	width:120px;
+}
+.disabled:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #aab3a5), color-stop(1, #7d7d7d));
+	background:-moz-linear-gradient(top, #aab3a5 5%, #7d7d7d 100%);
+	background:-webkit-linear-gradient(top, #aab3a5 5%, #7d7d7d 100%);
+	background:-o-linear-gradient(top, #aab3a5 5%, #7d7d7d 100%);
+	background:-ms-linear-gradient(top, #aab3a5 5%, #7d7d7d 100%);
+	background:linear-gradient(to bottom, #aab3a5 5%, #7d7d7d 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#aab3a5', endColorstr='#7d7d7d',GradientType=0);
+	background-color:#aab3a5;
+}
+.disabled:active {
+	position:relative;
+	top:1px;
+}
+
+.total_time{
+	margin-top:100px
+}
+	.tilt{
+	margin-left:10px
+	}	
+		
+}
 	</style>
 	</head>
 	<body >
-	<section id="stopWatch">
+	<div class="tilt" ><h1>ROAD TYPE LOG<h2></div>
 	<table>
 		<tr>
-			<th><h1>A</h1></th>
-			<th><h1>B</h1></th> 
-			<th><h1>C</h1></th> 
-
+			<th><button id="aButton" class="selected">URBAN</button></th>
+			<th class="lborder"><div id=timea>00:00:00</th> 	
+			<th class="rborder"><div id=perca>0.00 %</th> 	
 		</tr>
 		<tr>
-			<th><h1 id=timea>00:00:00 0</h1></th>
-			<th><h1 id=timeb>00:00:00 0</h1></th> 
-			<th><h1 id=timec>00:00:00 0</h1></th> 
-
+			<th><button id="bButton" class="myButton">RURAL</button></th>
+			<th class="lborder" ><div  id=timeb>00:00:00</th> 
+			<th class="rborder" ><div  id=percb>0.00 %</th> 			
 		</tr>
+		<tr>
+			<th><button id="cButton" class="myButton">MOTORWAY</button></th>
+			<th class="lborder"><div  id=timec>00:00:00</th> 	
+			<th class="rborder"><div  id=percc>0.00 %</th> 
+		</tr>
+	<tr class ="total_time">
+		<td>Total trip time:</td>
+		<td colspan="2"><div  id=time class="time">00:00:00</td>
+	</tr>
+		
 	<tr>
-		<th>
-		<h1 id=time>00:00:00 0</h1>
-		<button id="next">next</button>
-		<button id="start">start</button>
-		<button id="stop">stop</button>
-		<button id="clear">clear</button>
-		</th>
+		<td colspan="3" >
+		<button class="myButton center" id="start">START</button>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+		<button class="myButton center" id="clear">CLEAR</button>
+		</td>
 	</tr>
 	</table>
-		
-		
-		</section> 
-		
-		
-		
+
 		<script>
-		//stopper
+		
+	
+	
 		var time = document.getElementById('time'),
 		start = document.getElementById('start'),
 		stop = document.getElementById('stop'),
 		clear = document.getElementById('clear'),
-		next = document.getElementById('next'),
-		seconds = 0, minutes = 0, hours = 0, ms=0,
-		a_seconds = 0, a_minutes = 0, a_hours = 0, a_ms=0,
-		b_seconds = 0, b_minutes = 0, b_hours = 0, b_ms=0,
-		c_seconds = 0, c_minutes = 0, c_hours = 0, c_ms=0,
+		aButton = document.getElementById('aButton'),
+		bButton = document.getElementById('bButton'),
+		cButton = document.getElementById('cButton'),
 		t;
+		clear.disabled=true;
 		var active="a";
-
+		var last;
+		var lastA;
+		var lastB;
+		var lastC;
+		var timeCounter=0;
+		var timeCounterA=0;
+		var timeCounterB=0;
+		var timeCounterC=0;
+		var paused=true;
+		var totalA=0;
+		var totalB=0;
+		var totalC=0;
+		
 	function add() {
-    ms++;
-	if(ms>=10){
-		seconds++;
-		ms=0;
-    if (seconds >= 60) {
-        seconds = 0;
-        minutes++;
-        if (minutes >= 60) {
-            minutes = 0;
-            hours++;
-        }
-		}
-    }
-		if(active==="a")
-			add_a();
-		if(active==="b")
-			add_b();
-		if(active==="c")
-			add_c();
-		time.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds)+" "+ms;
-		timea.textContent = (a_hours ? (a_hours > 9 ? a_hours : "0" + a_hours) : "00") + ":" + (a_minutes ? (a_minutes > 9 ? a_minutes : "0" + a_minutes) : "00") + ":" + (a_seconds > 9 ? a_seconds : "0" + a_seconds)+" "+a_ms;
-		timeb.textContent = (b_hours ? (b_hours > 9 ? b_hours : "0" + b_hours) : "00") + ":" + (b_minutes ? (b_minutes > 9 ? b_minutes : "0" + b_minutes) : "00") + ":" + (b_seconds > 9 ? b_seconds : "0" + b_seconds)+" "+b_ms;
-		timec.textContent = (c_hours ? (c_hours > 9 ? c_hours : "0" + c_hours) : "00") + ":" + (c_minutes ? (c_minutes > 9 ? c_minutes : "0" + c_minutes) : "00") + ":" + (c_seconds > 9 ? c_seconds : "0" + c_seconds)+" "+c_ms;
-
+	//console.log((Date.now()-startTime)/1000);
+	var currentdate = new Date(); 
+		
+	if(!paused)
+	{	time.textContent =	toHHMMSS(currentdate-last);
+		if(active=="a"){
+		totalA=currentdate-lastA;
+		timea.textContent=toHHMMSS(currentdate-lastA);}
+		if(active=="b"){
+		totalB=currentdate-lastB;
+		timeb.textContent=toHHMMSS(currentdate-lastB);}
+		if(active=="c"){
+		totalC=currentdate-lastC;
+		timec.textContent=toHHMMSS(currentdate-lastC);}
+		//calculate percentage
+			var total=totalA+totalB+totalC;
+			var percA=(totalA/total)*100;
+			var percB=(totalB/total)*100;
+			var percC=(totalC/total)*100;
+			console.log(percA.toFixed(2));
+			document.getElementById('perca').innerHTML=percA.toFixed(2)+" %";
+			document.getElementById('percb').innerHTML=percB.toFixed(2)+" %";
+			document.getElementById('percc').innerHTML=percC.toFixed(2)+" %";
+		//
+		
+	}
+	
+	
+		
 		timer();
-	
 	}
 	
-	function add_a() {
-    a_ms++;
-	if(a_ms>=10){
-		a_seconds++;
-		a_ms=0;
-    if (a_seconds >= 60) {
-        a_seconds = 0;
-        a_minutes++;
-        if (a_minutes >= 60) {
-            a_minutes = 0;
-            a_hours++;
-        }
-		}
-    }
-	}
-	function add_b() {
-    b_ms++;
-	if(b_ms>=10){
-		b_seconds++;
-		b_ms=0;
-    if (b_seconds >= 60) {
-        b_seconds = 0;
-        b_minutes++;
-        if (b_minutes >= 60) {
-            b_minutes = 0;
-            b_hours++;
-        }
-		}
-    }
-	}
-	function add_c() {
-    c_ms++;
-	if(c_ms>=10){
-		c_seconds++;
-		c_ms=0;
-    if (c_seconds >= 60) {
-        c_seconds = 0;
-        c_minutes++;
-        if (c_minutes >= 60) {
-            c_minutes = 0;
-            c_hours++;
-        }
-		}
-    }
-	}
+	
+	
    
 	function timer() {
-		t = setTimeout(add, 100);
-	}
 	
+		t = setTimeout(add, 10);
+	}
+	function startTimer(){
+		if(start.innerHTML=="PAUSE"){
+			//PAUSE counter
+			start.innerHTML="START";
+			timeCounter=last-Date.now();
+			if(active=="a"){	
+				timeCounterA=lastA-Date.now();
+			}
+			if(active=="b"){
+				timeCounterB=lastB-Date.now();
+			}
+			if(active=="c"){
+				timeCounterC=lastC-Date.now();
+			}
+			paused=true;
+			clear.disabled=false;
+			clear.className="MyButton center";
+		}
+		else
+		{
+		
+			//Start Counter
+		start.innerHTML="PAUSE";
+		paused=false;
+		last = Date.now()+timeCounter;
+			if(active=="a"){	
+				lastA=Date.now()+timeCounterA;
+			}
+			if(active=="b"){
+				lastB=Date.now()+timeCounterB;
+			}
+			if(active=="c"){
+				lastC=Date.now()+timeCounterC;
+			}
+			clear.className="disabled center";
+			clear.disabled=true;
+			timer();
+		}
+	}
 
 
 /* Start button */
-start.onclick = timer;
+start.onclick = startTimer;
 
-/* Stop button */
+/* Stop button 
 stop.onclick = function() {
     clearTimeout(t);
+	start.innerHTML="GO";
+}*/
+aButton.onclick = function() {
+		aButton.className="selected";
+		bButton.className="myButton";
+		cButton.className="myButton";
+		lastA=Date.now()+timeCounterA;
+		if(active=="b")
+		timeCounterB=lastB-Date.now();
+		if(active=="c")
+		timeCounterC=lastC-Date.now();
+		active="a";
 }
-next.onclick = function(){
-	if(active==="a")
-		{active="b";}
-		else{
-	if(active==="b")
+bButton.onclick = function() {
+		aButton.className="myButton";
+		bButton.className="selected";
+		cButton.className="myButton";
+		lastB=Date.now()+timeCounterB;
+		if(active=="a")
+		timeCounterA=lastA-Date.now();
+		if(active=="c")
+		timeCounterC=lastC-Date.now();
+		active="b";
+}
+cButton.onclick = function() {
+		aButton.className="myButton";
+		bButton.className="myButton";
+		cButton.className="selected";
+		lastC=Date.now()+timeCounterC;
+		if(active=="a")
+		timeCounterA=lastA-Date.now();
+		if(active=="b")
+		timeCounterB=lastB-Date.now();
 		active="c";
-		else
-	if(active==="c")
-		active="a";}
-		
 }
 /* Clear button */
 clear.onclick = function() {
-    time.textContent = "00:00:00 0";
-	timea.textContent = "00:00:00 0";
-	timeb.textContent = "00:00:00 0";
-	timec.textContent = "00:00:00 0";
-    seconds = 0; minutes = 0; hours = 0; ms=0;
+    time.textContent = "00:00:00";
+	timea.textContent = "00:00:00";
+	timeb.textContent = "00:00:00";
+	timec.textContent = "00:00:00";
+	timeCounter=0;
+	timeCounterA=0;
+	timeCounterB=0;
+	timeCounterC=0;
+	totalA=0;
+	totalB=0;
+	totalC=0;
 	
-	a_seconds = 0; a_minutes = 0; a_hours = 0; a_ms=0;
-	b_seconds = 0; b_minutes = 0; b_hours = 0; b_ms=0;
-	c_seconds = 0; c_minutes = 0; c_hours = 0; c_ms=0;
-	active="a";
+	document.getElementById('perca').innerHTML="0.00 %";
+	document.getElementById('percb').innerHTML="0.00 %";
+	document.getElementById('percc').innerHTML="0.00 %";
+	
 }
+	toHHMMSS = function (time) {
+    var sec_num = parseInt(time/1000); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours+':'+minutes+':'+seconds;
+	}
 		</script>
 	</body>
 </html>
