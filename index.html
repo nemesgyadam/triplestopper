@@ -245,7 +245,6 @@
 		var totalC=0;
 		
 	function add() {
-	//console.log((Date.now()-startTime)/1000);
 	var currentdate = new Date(); 
 		
 	if(!paused)
@@ -263,8 +262,10 @@
 			var total=totalA+totalB+totalC;
 			var percA=(totalA/total)*100;
 			var percB=(totalB/total)*100;
-			var percC=(totalC/total)*100;
-			
+			var percC=(totalC/total)*100;		
+			document.getElementById('perca').innerHTML=percA.toFixed(2)+" %";
+			document.getElementById('percb').innerHTML=percB.toFixed(2)+" %";
+			document.getElementById('percc').innerHTML=percC.toFixed(2)+" %";
 		
 	}
 	
