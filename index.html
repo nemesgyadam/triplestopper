@@ -161,7 +161,9 @@
 	.tilt{
 	margin-left:10px
 	}	
-		
+	input {
+	width: 30pt;
+	}	
 }
 	</style>
 	</head>
@@ -184,15 +186,27 @@
 			<th class="rborder"><div  id=percc>0.00 %</th> 
 		</tr>
 	<tr class ="total_time">
-		<td>Total trip time:</td>
+		<td>Measurement duration:</td>
 		<td colspan="2"><div  id=time class="time">00:00:00</td>
 	</tr>
 		
+	
+	
 	<tr>
 		<td colspan="3" >
 		<button class="myButton center" id="start">START</button>
 		</td>
 	</tr>
+	<tr class ="total_time">
+		<td>Shift hours:</td>
+		<td colspan="2" class="time"><input type="number" id="idle_hour" min="0" max="24" value="8" >:<input type="number" id="idle_min" min="0" max="59" value="0"></td>
+	</tr>
+	
+	<tr class ="total_time">
+		<td><button class="myButton" id="idle">Calculate idle time</button></td>
+		<td colspan="2"><div  id="idle_time" class="time">00:00:00</td>
+	</tr>
+	
 	<tr>
 		<td colspan="3">
 		<button class="myButton center" id="clear">CLEAR</button>
@@ -211,8 +225,10 @@
 		aButton = document.getElementById('aButton'),
 		bButton = document.getElementById('bButton'),
 		cButton = document.getElementById('cButton'),
+		idleButton=document.getElementById('idle'),
 		t;
 		clear.disabled=true;
+		idleButton.disabled=true;
 		var active="a";
 		var last;
 		var lastA;
@@ -247,11 +263,7 @@
 			var percA=(totalA/total)*100;
 			var percB=(totalB/total)*100;
 			var percC=(totalC/total)*100;
-			console.log(percA.toFixed(2));
-			document.getElementById('perca').innerHTML=percA.toFixed(2)+" %";
-			document.getElementById('percb').innerHTML=percB.toFixed(2)+" %";
-			document.getElementById('percc').innerHTML=percC.toFixed(2)+" %";
-		//
+			
 		
 	}
 	
@@ -283,6 +295,8 @@
 			}
 			paused=true;
 			clear.disabled=false;
+			idleButton.disabled=false;
+			idleButton.className="MyButton";
 			clear.className="MyButton center";
 		}
 		else
@@ -303,6 +317,8 @@
 			}
 			clear.className="disabled center";
 			clear.disabled=true;
+			idleButton.className="disabled";
+			idleButton.disabled=true;
 			timer();
 		}
 	}
@@ -366,6 +382,16 @@ clear.onclick = function() {
 	document.getElementById('perca').innerHTML="0.00 %";
 	document.getElementById('percb').innerHTML="0.00 %";
 	document.getElementById('percc').innerHTML="0.00 %";
+	document.getElementById('idle_time').innerHTML="00:00:00";
+	
+}
+idleButton.onclick = function() {
+	var hour=document.getElementById('idle_hour').value;
+	var min=document.getElementById('idle_min').value;
+	var duration=document.getElementById('time').innerHTML;
+	var shift=((Number(hour)*60)+Number(min))*60000;
+	var idle=shift+timeCounter;
+	document.getElementById('idle_time').innerHTML=toHHMMSS(idle);
 	
 }
 	toHHMMSS = function (time) {
