@@ -248,8 +248,12 @@
 	
 		
 	if(!paused)
-	{	time.textContent =	toHHMMSS(currentdate-last);
+	{/*	console.log("curdate");
+	console.log(currentdate);*/
+	
+		time.textContent =	toHHMMSS(currentdate-last);
 		if(active=="a"){
+	//	console.log(lastA);
 		totalA=currentdate-lastA;
 		timea.textContent=toHHMMSS(currentdate-lastA);}
 		if(active=="b"){
@@ -339,10 +343,11 @@ aButton.onclick = function() {
 		bButton.className="myButton";
 		cButton.className="myButton";
 		lastA=Date.now()+timeCounterA;
+		if(!paused){
 		if(active=="b")
 		timeCounterB=lastB-Date.now();
 		if(active=="c")
-		timeCounterC=lastC-Date.now();
+		timeCounterC=lastC-Date.now();}
 		active="a";
 }
 bButton.onclick = function() {
@@ -350,10 +355,11 @@ bButton.onclick = function() {
 		bButton.className="selected";
 		cButton.className="myButton";
 		lastB=Date.now()+timeCounterB;
+		if(!paused){
 		if(active=="a")
 		timeCounterA=lastA-Date.now();
 		if(active=="c")
-		timeCounterC=lastC-Date.now();
+		timeCounterC=lastC-Date.now();}
 		active="b";
 }
 cButton.onclick = function() {
@@ -361,10 +367,12 @@ cButton.onclick = function() {
 		bButton.className="myButton";
 		cButton.className="selected";
 		lastC=Date.now()+timeCounterC;
+		if(!paused){
 		if(active=="a")
 		timeCounterA=lastA-Date.now();
 		if(active=="b")
 		timeCounterB=lastB-Date.now();
+		}
 		active="c";
 }
 /* Clear button */
